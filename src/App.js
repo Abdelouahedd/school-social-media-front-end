@@ -1,23 +1,41 @@
+import {lazy, Suspense, useContext} from "react";
+import UserProvider, {Context} from "./context/userContext";
+import {useUserAuthentication} from "./hooks/useUserAuth";
+import Home from "./components/home/Home";
+
+
+const Authenticated = lazy(() => import("./Authenticated"))
+const Unauthenticated = lazy(() => import("./Unauthenticated"))
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
 
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const {user, dispatch} = useContext(Context)
+    const {loading, isLoggedIn} = useUserAuthentication(user, dispatch);
+
+    return (
+        <>
+            <Home/>
+            {
+                /*loading ?
+                    (<Spinner />) :
+                    (
+                        isLoggedIn === false ?
+                            (<Suspense fallback={<Spinner />}>
+                              <Unauthenticated />
+                            </Suspense>)
+                            :
+                            (<Suspense fallback={<Spinner />}>
+                              <Authenticated />
+                            </Suspense>)
+                    )*/
+            }
+        </>
+    );
 }
 
-export default App;
+export default () => (
+    <UserProvider>
+        <App/>
+    </UserProvider>
+)
+
