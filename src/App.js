@@ -1,7 +1,11 @@
-import {lazy, Suspense, useContext} from "react";
+import React, {lazy, Suspense, useContext} from "react";
 import UserProvider, {Context} from "./context/userContext";
 import {useUserAuthentication} from "./hooks/useUserAuth";
 import Home from "./components/home/Home";
+import history from "./helper/history";
+import {Router} from "react-router-dom";
+import Main from "./components/Main";
+
 
 
 const Authenticated = lazy(() => import("./Authenticated"))
@@ -14,21 +18,7 @@ function App() {
 
     return (
         <>
-            <Home/>
-            {
-                /*loading ?
-                    (<Spinner />) :
-                    (
-                        isLoggedIn === false ?
-                            (<Suspense fallback={<Spinner />}>
-                              <Unauthenticated />
-                            </Suspense>)
-                            :
-                            (<Suspense fallback={<Spinner />}>
-                              <Authenticated />
-                            </Suspense>)
-                    )*/
-            }
+            <Main/>
         </>
     );
 }

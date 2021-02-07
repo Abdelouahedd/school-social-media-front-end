@@ -1,9 +1,12 @@
 import React from 'react';
+import Modal from "antd/es/modal/Modal";
+import {Carousel} from "antd";
 
 const Index = () => {
     const {REACT_APP_URL} = process.env;
 
     return (
+
         <section className="ftco-section ftco-no-pt ftco-no-pb">
             <div className="container">
                 <div className="row d-flex">
@@ -12,7 +15,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_1.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_1.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">A Loving Heart is the Truest
                                             Wisdom</a></h3>
@@ -37,7 +40,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_2.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_2.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">Great Things Never Came from Comfort
                                             Zone</a></h3>
@@ -61,7 +64,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_3.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_3.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">Paths Are Made by Walking</a></h3>
                                         <div className="meta-wrap">
@@ -83,7 +86,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_4.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_4.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">The Secret of Getting Ahead is
                                             Getting Started</a></h3>
@@ -106,7 +109,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_5.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_5.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -129,7 +132,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_6.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_6.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -152,7 +155,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_7.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_7.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -174,7 +177,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_8.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_8.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -198,7 +201,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_9.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_9.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -244,7 +247,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_11.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_11.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -266,7 +269,7 @@ const Index = () => {
                             <div className="col-md-12">
                                 <div className="blog-entry ftco-animate d-md-flex">
                                     <a href="single.html" className="img img-2"
-                                       style={{backgroundimage: ` url(${REACT_APP_URL}images/image_12.jpg)`}}/>
+                                       style={{backgroundImage: ` url(${REACT_APP_URL}images/image_12.jpg)`}}/>
                                     <div className="text text-2 pl-md-4">
                                         <h3 className="mb-2"><a href="single.html">You Can't Blame Gravity for Falling
                                             in Love</a></h3>
@@ -327,7 +330,7 @@ const Index = () => {
                             <h3 className="sidebar-heading">Popular Articles</h3>
                             <div className="block-21 mb-4 d-flex">
                                 <a className="blog-img mr-4"
-                                   style={{backgroundimage: ` url(${REACT_APP_URL}images/image_1.jpg)`}}/>
+                                   style={{backgroundImage: ` url(${REACT_APP_URL}images/image_1.jpg)`}}/>
                                 <div className="text">
                                     <h3 className="heading"><a href="#">Even the all-powerful Pointing has no
                                         control</a></h3>
@@ -340,7 +343,7 @@ const Index = () => {
                             </div>
                             <div className="block-21 mb-4 d-flex">
                                 <a className="blog-img mr-4"
-                                   style={{backgroundimage: ` url(${REACT_APP_URL}images/image_2.jpg)`}}/>
+                                   style={{backgroundImage: ` url(${REACT_APP_URL}images/image_2.jpg)`}}/>
                                 <div className="text">
                                     <h3 className="heading"><a href="#">Even the all-powerful Pointing has no
                                         control</a></h3>
@@ -353,7 +356,7 @@ const Index = () => {
                             </div>
                             <div className="block-21 mb-4 d-flex">
                                 <a className="blog-img mr-4"
-                                   style={{backgroundimage: ` url(${REACT_APP_URL}images/image_3.jpg)`}}/>
+                                   style={{backgroundImage: ` url(${REACT_APP_URL}images/image_3.jpg)`}}/>
                                 <div className="text">
                                     <h3 className="heading"><a href="#">Even the all-powerful Pointing has no
                                         control</a></h3>

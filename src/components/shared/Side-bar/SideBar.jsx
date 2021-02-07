@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 
 function SideBar() {
@@ -8,7 +9,7 @@ function SideBar() {
         <aside id="colorlib-aside" role="complementary" className="js-fullheight">
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
-                    <li className="colorlib-active"><a href="index.html">Home</a></li>
+                    <li className="colorlib-active"><Link to="/">Home</Link></li>
                     <li><a href="fashion.html">Fashion</a></li>
                     <li><a href="travel.html">Travel</a></li>
                     <li><a href="about.html">About</a></li>
@@ -18,10 +19,9 @@ function SideBar() {
 
             <div className="colorlib-footer">
                 <h1 id="colorlib-logo" className="mb-4">
-                    <a href="index.html"
-                       style={{backgroundImage: `url(${REACT_APP_URL}images/bg_1.jpg)`}}>
+                    <Link to="/" style={{backgroundImage: `url(${REACT_APP_URL}images/bg_1.jpg)`}}>
                         Andrea <span>Moore</span>
-                    </a>
+                    </Link>
                 </h1>
                 <div className="mb-4">
                     <h3>Subscribe for newsletter</h3>
