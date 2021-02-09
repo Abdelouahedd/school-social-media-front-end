@@ -122,6 +122,7 @@ const RightSideBar = () => {
         <Timeline>
           {events.map((event) => (
             <Timeline.Item
+              key={event.id}
               className={event.name.length % 2 === 0 ? 'green' : 'gray'}
             >
               <p>
