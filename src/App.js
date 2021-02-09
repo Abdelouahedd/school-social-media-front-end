@@ -1,11 +1,7 @@
 import React, {lazy, Suspense, useContext} from "react";
 import UserProvider, {Context} from "./context/userContext";
 import {useUserAuthentication} from "./hooks/useUserAuth";
-import Home from "./components/home/Home";
-import history from "./helper/history";
-import {Router} from "react-router-dom";
-import Main from "./components/Main";
-
+import Spinner from "./components/shared/spinner/Spinner";
 
 
 const Authenticated = lazy(() => import("./Authenticated"))
@@ -14,11 +10,26 @@ const Unauthenticated = lazy(() => import("./Unauthenticated"))
 function App() {
 
     const {user, dispatch} = useContext(Context)
-    const {loading, isLoggedIn} = useUserAuthentication(user, dispatch);
+    /*   const {loading, isLoggedIn} = useUserAuthentication(user, dispatch);*/
+    const [loading] = React.useState(false);
+    const [isLoggedIn] = React.useState(true);
 
     return (
         <>
-            <Main/>
+            {
+                loading ?
+                    (<Spinner/>) :
+                    (
+                        isLoggedIn === false ?
+                            (<Suspense fallback={<Spinner/>}>
+                                <Unauthenticated/>
+                            </Suspense>)
+                            :
+                            (<Suspense fallback={<Spinner/>}>
+                                <Authenticated/>
+                            </Suspense>)
+                    )
+            }
         </>
     );
 }

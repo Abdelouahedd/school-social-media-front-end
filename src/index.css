@@ -1,17 +1,3 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 #components-layout-demo-fixed-sider .logo {
   height: 32px;
   margin: 16px;
@@ -22,16 +8,15 @@ code {
 }
 
 
-
 @media (min-width: 992px) {
   .gedf-card {
-    margin-bottom: 2.77rem;
+    margin-bottom: 2rem;
   }
 }
 
 @media (max-width: 992px) {
   .gedf-card {
-    margin-bottom: 2rem;
+    margin-bottom: 0.3rem;
   }
 }
 
@@ -234,4 +219,19 @@ code {
   visibility: visible;
   z-index: 9999;
   -webkit-transform: scale(1) translateX(-50%) translateY(-50%);
+}
+
+
+.main-left-sidebar {
+  float: left;
+  width: 100%;
+  margin-top: -20px;
+}
+
+.ed-opts > a{
+  -webkit-transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+  -ms-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
 }
