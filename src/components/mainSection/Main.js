@@ -9,6 +9,7 @@ const { TextArea } = Input
 const Main = () => {
   const [files, setFiles] = useState([])
   const [visible, setVisible] = React.useState(false)
+  const [post, setPost] = useState()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -37,10 +38,16 @@ const Main = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/v1/posts')
+      .get('http://localhost:3000/api/v1/posts', {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmRlbGhhbWlkQGxvY2FsaG9zdCIsImV4cCI6MTYxMzAxNDg2MiwiaWF0IjoxNjEzMDExMjYyfQ.EHrDZbJXpJHPnrk0PZsYGzBlbVY_7Qq1sT94mpR-lbw',
+        },
+      })
       .then((res) => res.data)
       .then((data) => {
         console.log(data)
+        data.sort((a, b) => a.lastModifiedDate <= b.lastModifiedDate);
         setPosts(data)
         setLoading(false)
       })
@@ -49,6 +56,24 @@ const Main = () => {
         setLoading(false)
       })
   }, [])
+
+  const publishPost = (content) => {
+    axios({
+      method: 'POST',
+      baseURL: 'http://localhost:3000/api/v1/posts',
+      headers: {
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmRlbGhhbWlkQGxvY2FsaG9zdCIsImV4cCI6MTYxMzAxNDg2MiwiaWF0IjoxNjEzMDExMjYyfQ.EHrDZbJXpJHPnrk0PZsYGzBlbVY_7Qq1sT94mpR-lbw',
+      },
+      data: { content },
+    })
+      .then((res) => {
+        console.log({ result: res.data })
+        setPosts([res.data, ...posts])
+        setVisible(false)
+      })
+      .catch((err) => console.error(err))
+  }
 
   return (
     <>
@@ -108,17 +133,23 @@ const Main = () => {
         onCancel={handleCancel}
       >
         <div className="container">
-          <TextArea showCount maxLength={100} rows={6} />
+          <TextArea
+            value={post}
+            onChange={(e) => setPost(e.target.value)}
+            showCount
+            maxLength={100}
+            rows={6}
+          />
           <div className="row">
             <div className="col-lg-6">
-              <Button type="primary" block>
-                <span>Add post</span>
+              <Button type="primary" block onClick={(_) => publishPost(post)}>
+                <span>Publier</span>
               </Button>
             </div>
             <div className="col-lg-6">
               <Upload {...uploadSettings}>
                 <Button icon={<UploadOutlined />} block>
-                  Click to Upload
+                  Uploader
                 </Button>
               </Upload>
             </div>

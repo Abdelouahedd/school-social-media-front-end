@@ -66,7 +66,6 @@ const Post = ({ post }) => {
           {}
         </div>
         <p className="card-text">{post.content}</p>
-        <Tag color="magenta">{post.group.name}</Tag>
         <Tag color="yellow">{post.user.roles}</Tag>
       </div>
       {/*Footer card POst*/}
