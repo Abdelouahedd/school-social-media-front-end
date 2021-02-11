@@ -10,9 +10,13 @@ const Unauthenticated = lazy(() => import("./Unauthenticated"))
 function App() {
 
     const {user, dispatch} = useContext(Context)
-    /*   const {loading, isLoggedIn} = useUserAuthentication(user, dispatch);*/
-    const [loading] = React.useState(false);
-    const [isLoggedIn] = React.useState(true);
+    const [loading, setLoading] = React.useState(true);
+    const [token, setToken] = React.useState("");
+
+    useEffect(() => {
+        setToken(window.localStorage.getItem("info"));
+        setLoading(false);
+    }, [])
 
     return (
         <>
@@ -20,7 +24,7 @@ function App() {
                 loading ?
                     (<Spinner/>) :
                     (
-                        isLoggedIn === false ?
+                        token ?
                             (<Suspense fallback={<Spinner/>}>
                                 <Unauthenticated/>
                             </Suspense>)
