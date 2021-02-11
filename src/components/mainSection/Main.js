@@ -47,7 +47,7 @@ const Main = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log(data)
-        data.sort((a, b) => a.lastModifiedDate <= b.lastModifiedDate);
+        data.sort((a, b) => a.lastModifiedDate <= b.lastModifiedDate)
         setPosts(data)
         setLoading(false)
       })
@@ -73,6 +73,27 @@ const Main = () => {
         setVisible(false)
       })
       .catch((err) => console.error(err))
+  }
+
+  const deletePost = (post) => {
+    axios({
+      method: 'DELETE',
+      baseURL: `http://localhost:3000/api/v1/posts/${post.id}`,
+      headers: {
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmRlbGhhbWlkQGxvY2FsaG9zdCIsImV4cCI6MTYxMzAxNDg2MiwiaWF0IjoxNjEzMDExMjYyfQ.EHrDZbJXpJHPnrk0PZsYGzBlbVY_7Qq1sT94mpR-lbw',
+      },
+    })
+      .then((_) => {
+        const arr = posts.filter((p) => p.id != post.id)
+        setPosts(arr)
+      })
+      .catch((err) => console.error(err))
+  }
+
+  const hidePost = (post) => {
+    const arr = posts.filter((p) => p.id != post.id)
+    setPosts(arr)
   }
 
   return (
@@ -115,7 +136,12 @@ const Main = () => {
             {posts && posts.length !== 0 ? (
               <div>
                 {posts.map((post) => (
-                  <Post key={post.id} post={post} />
+                  <Post
+                    key={post.id}
+                    post={post}
+                    onDelete={(_) => deletePost(post)}
+                    onHide={(_) => hidePost(post)}
+                  />
                 ))}
               </div>
             ) : (

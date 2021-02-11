@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Tag } from 'antd'
 import CommentUI from '../CommentCard/CommentUI'
 
-const Post = ({ post }) => {
+const Post = ({ post, onDelete, onHide }) => {
   const [editOption, setEditOption] = useState(false)
   const [like, setLike] = useState(true)
 
@@ -39,20 +39,21 @@ const Post = ({ post }) => {
               <i className="fa fa-ellipsis-v"></i>
             </p>
             <ul className={editOption ? 'ed-options active' : 'ed-options'}>
-              <li>
-                <a href="edit" title="">
-                  Edit Post
-                </a>
+              <li
+                style={{
+                  cursor: 'pointer',
+                }}
+                onClick={onDelete}
+              >
+                <p>Supprimer</p>
               </li>
-              <li>
-                <a href="delete" title="">
-                  delete Post
-                </a>
-              </li>
-              <li>
-                <a href="Hide" title="">
-                  Hide
-                </a>
+              <li
+                style={{
+                  cursor: 'pointer',
+                }}
+                onClick={onHide}
+              >
+                <p>Hide</p>
               </li>
             </ul>
           </div>
