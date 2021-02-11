@@ -1,5 +1,5 @@
-import React, { useCallback, useContext } from 'react'
-import { Form, Input, Checkbox, Button, message } from 'antd';
+import React, {useCallback, useContext} from 'react'
+import {Form, Input, Checkbox, Button, message} from 'antd';
 import {useHistory} from "react-router";
 import {BASE_URL} from "../../config/config";
 import setAuthToken from "../../helper/setAuthToken";
@@ -8,10 +8,9 @@ import jwtDecode from "jwt-decode";
 import {setLogin} from "../../actions/userActions";
 
 
-
 export default function Login() {
 
-    const { dispatch } = useContext(Context);
+    const {dispatch} = useContext(Context);
 
     const history = useHistory();
 
@@ -34,15 +33,12 @@ export default function Login() {
                             message.error("Email or password are wrong !!");
                         } else {
                             var decode = await jwtDecode(res.jwt);
-                            if (decode.roles[0] === "ADMIN") {
-                                message.success("Login succes !!");
-                                await dispatch(setLogin(res.jwt));
-                                setAuthToken(res.jwt);
-                                window.localStorage.setItem('token', res.refreshJwt);
-                                history.push("/");
-                            } else {
-                                message.error("Acces denied !!");
-                            }
+                            console.log("data of user --->  ", decode);
+                            message.success("Login succes !!");
+                            await dispatch(setLogin(res.jwt));
+                            window.localStorage.setItem('info', res);
+                            setAuthToken(res.token);
+                            history.push("/");
                         }
                     });
         },
@@ -62,11 +58,12 @@ export default function Login() {
                             <div className="row justify-content-center">
                                 <div className="col-lg-5">
                                     <div className="card shadow-lg border-0 rounded-lg mt-4">
-                                        <div className="card-header justify-content-center"><h3 className="font-weight-light my-4">Login</h3></div>
+                                        <div className="card-header justify-content-center"><h3
+                                            className="font-weight-light my-4">Login</h3></div>
                                         <div className="card-body">
                                             <Form
                                                 name="basic"
-                                                initialValues={{ remember: false }}
+                                                initialValues={{remember: false}}
                                                 onFinish={onFinish}
                                                 layout="vertical"
                                             >
@@ -75,28 +72,31 @@ export default function Login() {
                                                     name="email"
                                                     className="small mb-1 my-4"
                                                     rules={[
-                                                        { required: true, message: 'email required!' },
-                                                        { type: 'email', message: 'Incorrect email!' }
+                                                        {required: true, message: 'email required!'},
+                                                        {type: 'email', message: 'Incorrect email!'}
                                                     ]}
                                                 >
-                                                    <Input size="large" className="form-control py-2" ref={email} />
+                                                    <Input size="large" className="form-control py-2" ref={email}/>
                                                 </Form.Item>
                                                 <div className="form-group">
                                                     <Form.Item
                                                         className="small mb-1 my-4"
                                                         label="Mot de passe"
                                                         name="password"
-                                                        rules={[{ required: true, message: 'mot de passe required !' }]}
+                                                        rules={[{required: true, message: 'mot de passe required !'}]}
                                                     >
-                                                        <Input.Password size="large" className="form-control py-2" ref={pass} />
+                                                        <Input.Password size="large" className="form-control py-2"
+                                                                        ref={pass}/>
                                                     </Form.Item>
                                                 </div>
-                                                <Form.Item className="custom-control custom-checkbox" name="remember" valuePropName="checked">
+                                                <Form.Item className="custom-control custom-checkbox" name="remember"
+                                                           valuePropName="checked">
                                                     <Checkbox>Remember me</Checkbox>
                                                 </Form.Item>
 
-                                                <Form.Item >
-                                                    <Button block shape="round" type="primary" htmlType="submit" size="large">
+                                                <Form.Item>
+                                                    <Button block shape="round" type="primary" htmlType="submit"
+                                                            size="large">
                                                         Login
                                                     </Button>
                                                 </Form.Item>
@@ -126,6 +126,6 @@ export default function Login() {
                     </footer>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
