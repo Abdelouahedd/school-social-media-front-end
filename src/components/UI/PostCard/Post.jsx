@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Tag } from 'antd'
+import { Tag, Input } from 'antd'
 import CommentUI from '../CommentCard/CommentUI'
 
-const Post = ({ post }) => {
+const Post = ({ post, onDelete, onHide, onComment }) => {
   const [editOption, setEditOption] = useState(false)
-  const [like, setLike] = useState(true)
-
+  const [comment, setComment] = useState('')
+  const [toggleComment, setToggleComment] = useState(false)
   return (
     <div className="card gedf-card">
       {/*Header of card */}
@@ -39,20 +39,21 @@ const Post = ({ post }) => {
               <i className="fa fa-ellipsis-v"></i>
             </p>
             <ul className={editOption ? 'ed-options active' : 'ed-options'}>
-              <li>
-                <a href="edit" title="">
-                  Edit Post
-                </a>
+              <li
+                style={{
+                  cursor: 'pointer',
+                }}
+                onClick={onDelete}
+              >
+                <p>Supprimer</p>
               </li>
-              <li>
-                <a href="delete" title="">
-                  delete Post
-                </a>
-              </li>
-              <li>
-                <a href="Hide" title="">
-                  Hide
-                </a>
+              <li
+                style={{
+                  cursor: 'pointer',
+                }}
+                onClick={onHide}
+              >
+                <p>Hide</p>
               </li>
             </ul>
           </div>
@@ -71,25 +72,36 @@ const Post = ({ post }) => {
       {/*Footer card POst*/}
       <div className="card-footer bg-white border-1 p-0">
         <div className="d-flex justify-content-between align-items-center my-1">
-          <div className="col" onClick={() => setLike(!like)}>
-            <button type="button" className="btn btn-fbook btn-block btn-sm">
-              Aimer
-            </button>
-          </div>
           <div className="col">
-            <button type="button" className="btn btn-fbook btn-block btn-sm">
+            <button
+              onClick={(_) => {
+                const foo = toggleComment
+                console.log(foo)
+                setToggleComment(!foo)
+              }}
+              type="button"
+              className="btn btn-fbook btn-block btn-sm"
+            >
               <i className="fa fa-comment-o" aria-hidden="true" />
               Commenter
-            </button>
-          </div>
-          <div className="col">
-            <button type="button" className="btn btn-fbook btn-block btn-sm">
-              <i className="fa fa-share" aria-hidden="true" /> Partager
             </button>
           </div>
         </div>
       </div>
       <hr />
+      <Input
+        style={{ visibility: toggleComment ? 'visible' : 'hidden' }}
+        placeholder="Commenter ici"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        onKeyUp={(e) => {
+          if (e.key === 'Enter' || e.keyCode === 13) {
+            onComment(comment, post)
+            setComment('')
+            setToggleComment(!toggleComment)
+          }
+        }}
+      />
       {post.comments && post.comments.length !== 0 && (
         <div>
           {post.comments.map((comment) => (

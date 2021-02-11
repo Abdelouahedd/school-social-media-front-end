@@ -78,6 +78,45 @@ const Main = () => {
       .catch((err) => console.error(err))
   }
 
+  const deletePost = (post) => {
+    axios({
+      method: 'DELETE',
+      baseURL: `http://localhost:3000/api/v1/posts/${post.id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((_) => {
+        console.log('post deleted successfully')
+        const arr = posts.filter((p) => p.id != post.id)
+        setPosts(arr)
+      })
+      .catch((err) => console.error(err))
+  }
+
+  const hidePost = (post) => {
+    const arr = posts.filter((p) => p.id != post.id)
+    setPosts(arr)
+  }
+
+  const commentOnPost = (comment, post) => {
+    axios({
+      method: 'POST',
+      baseURL: `http://localhost:3000/api/v1/posts/${post.id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: { content: comment },
+    })
+      .then((res) => {
+        console.log('comment added successfully')
+        post.comments.push(res.data)
+        const test = [...posts];
+        setPosts(test)
+      })
+      .catch((err) => console.error(err))
+  }
+
   return (
     <>
       <section className="col-6 border border-2">
@@ -118,7 +157,13 @@ const Main = () => {
             {posts && posts.length !== 0 ? (
               <div>
                 {posts.map((post) => (
-                  <Post key={post.id} post={post} />
+                  <Post
+                    key={post.id}
+                    post={post}
+                    onDelete={(_) => deletePost(post)}
+                    onHide={(_) => hidePost(post)}
+                    onComment={commentOnPost}
+                  />
                 ))}
               </div>
             ) : (
