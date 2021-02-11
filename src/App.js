@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, useContext} from "react";
+import React, {lazy, Suspense, useContext, useEffect} from "react";
 import UserProvider, {Context} from "./context/userContext";
 import {useUserAuthentication} from "./hooks/useUserAuth";
 import Spinner from "./components/shared/spinner/Spinner";
@@ -24,7 +24,7 @@ function App() {
                 loading ?
                     (<Spinner/>) :
                     (
-                        token ?
+                        token == null ?
                             (<Suspense fallback={<Spinner/>}>
                                 <Unauthenticated/>
                             </Suspense>)
