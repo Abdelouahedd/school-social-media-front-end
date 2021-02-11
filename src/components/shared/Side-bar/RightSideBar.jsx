@@ -15,10 +15,16 @@ import axios from 'axios'
 
 const RightSideBar = () => {
   const [events, setEvents] = useState([])
+  const [token, setToken] = useState('')
 
   useEffect(() => {
+    const info = JSON.parse(window.localStorage.getItem('info'))
+    setToken(info.token)
+
     axios
-      .get('http://localhost:3000/api/v1/events')
+      .get('http://localhost:3000/api/v1/events', {
+        headers: { Authorization: `Bearer ${info.token}` },
+      })
       .then((res) => res.data)
       .then((data) => {
         setEvents(data)

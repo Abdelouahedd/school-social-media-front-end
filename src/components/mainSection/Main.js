@@ -12,6 +12,7 @@ const Main = () => {
   const [post, setPost] = useState()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [token, setToken] = useState('')
 
   //function to handle Modal
   const handleOk = () => setTimeout(() => setVisible(false), 2000)
@@ -37,17 +38,20 @@ const Main = () => {
   }
 
   useEffect(() => {
+    const info = JSON.parse(window.localStorage.getItem('info'))
+    console.log(info)
+    setToken(info.token)
+
     axios
       .get('http://localhost:3000/api/v1/posts', {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmRlbGhhbWlkQGxvY2FsaG9zdCIsImV4cCI6MTYxMzAxNDg2MiwiaWF0IjoxNjEzMDExMjYyfQ.EHrDZbJXpJHPnrk0PZsYGzBlbVY_7Qq1sT94mpR-lbw',
+          Authorization: `Bearer ${info.token}`,
         },
       })
       .then((res) => res.data)
       .then((data) => {
         console.log(data)
-        data.sort((a, b) => a.lastModifiedDate <= b.lastModifiedDate);
+        data.sort((a, b) => a.lastModifiedDate <= b.lastModifiedDate)
         setPosts(data)
         setLoading(false)
       })
@@ -62,8 +66,7 @@ const Main = () => {
       method: 'POST',
       baseURL: 'http://localhost:3000/api/v1/posts',
       headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmRlbGhhbWlkQGxvY2FsaG9zdCIsImV4cCI6MTYxMzAxNDg2MiwiaWF0IjoxNjEzMDExMjYyfQ.EHrDZbJXpJHPnrk0PZsYGzBlbVY_7Qq1sT94mpR-lbw',
+        Authorization: `Bearer ${token}`,
       },
       data: { content },
     })
